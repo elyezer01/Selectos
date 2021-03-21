@@ -1,0 +1,103 @@
+{% extends 'App1/layout.html' %}
+
+{% load static %}
+{% block content %}
+<style>
+    .card{
+        border: none;
+        box-shadow: 3px 4px 20px 0px #0000008a;
+    }
+
+    .card-deck {
+      margin: 0 15px;
+      justify-content: space-evenly;
+    }
+
+    .card-deck .card {
+      margin: 0 0 2rem 0;
+    }
+
+    @media (min-width: 300px) and (max-width: 575.98px) {
+      .card-deck .card {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+      }
+    }
+
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      .card-deck .card {
+        -ms-flex: 0 0 46%;
+        flex: 0 0 46%;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .card-deck .card {
+        -ms-flex: 0 0 46%;
+        flex: 0 0 46%;
+      }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199.98px)
+    {
+      .card-deck .card {
+        -ms-flex: 0 0 30%;
+        flex: 0 0 30%;
+      }
+    }
+
+    @media (min-width: 1200px)
+    {
+      .card-deck .card {
+        -ms-flex: 0 0 22%;
+        flex: 0 0 22%;
+      }
+    }
+
+</style>
+<div class="container" style="max-width: 1250px;">
+	<br>
+	  <ul class="breadcrumb">
+		
+		<li><a href="{% url 'index' %}">Inicio ></a></li>
+		<li><a href="{% url 'shop' %}"></a>&nbsp; Tiendas </a></li>
+		
+	  </ul>
+</div>
+<div class="container">
+<div class="card-deck">
+   {% for store in stores %} 
+        
+      <div class="card">
+        <img src="{{ store.imageURL }}" class="card-img-top" alt="{{ store.name }}"/>
+        <div class="card-body">
+          <a href="">
+              <h5 class="card-title">{{store.name}}</h5>
+            </a>
+          <p class="card-text">
+            {{ store.description }}
+          </p>
+        </div>
+      </div>
+
+    {% endfor %}
+    {% for store in stores %} 
+        
+    <div class="card">
+      <img src="{{ store.imageURL }}" class="card-img-top" alt="{{ store.name }}"/>
+      <div class="card-body">
+        <a href="">
+            <h5 class="card-title">{{store.name}}</h5>
+          </a>
+        <p class="card-text">
+          {{ store.description }}
+        </p>
+      </div>
+    </div>
+
+  {% endfor %}
+  </div>
+  </div>
+</div>
+
+{% endblock %}

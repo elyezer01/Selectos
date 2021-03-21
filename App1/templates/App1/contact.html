@@ -1,0 +1,51 @@
+{% extends "App1/layout.html" %}
+{% block content %}
+<div class="container my-4" style="max-width: 996px;">
+    <div class="container">
+        <h4>Nuestra Ubicación</h4>
+        <br>
+        <div class="container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d244.81241790389495!2d-63.840427621227704!3d10.963471097992802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sve!4v1616209388879!5m2!1ses!2sve" width="100%" height="450px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <strong>Contactenos</strong><br><strong>Oficina:</strong> 123456789
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row" >
+            <div class="col-12">
+        <form role="form" id="Formulario" action="../php/contacto2.php" method="POST">
+            <div class="form-group">
+                <label class="control-label" for="Nombre">Nombres</label>
+                <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Introduzca su nombre" required autofocus />
+            </div>            
+            <div class="form-group">
+                <label class="control-label" for="Motivo">Motivo de Contacto</label>
+                <select name="Motivo" class="form-control">
+                    <option value="Consulta General">Consulta General</option>
+                    <option value="Realizar Pedido">Realizar Pedido</option>
+                    <option value="Informe un problema">Informe un problema</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Empresa">Empresa</label>
+                <input type="text" class="form-control" id="Empresa" name="Empresa" placeholder="Introduzca el nombre de su empresa" required />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Correo">Dirección de Correo Electrónico</label>
+                <input type="email" class="form-control" id="Correo" name="Correo" placeholder="Introduzca su correo electrónico" required />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Mensaje">Mensaje</label>
+                <textarea rows="5" cols="30" class="form-control" id="Mensaje" name="Mensaje" placeholder="Introduzca su mensaje" required ></textarea>
+            </div>
+            <div class="form-group">                
+                <input type="submit" class="btn btn-dark" value="Enviar">
+                <input type="reset" class="btn btn-default" value="Limpiar">                
+            </div>
+            <div id="respuesta" style="display: none;"></div>
+        </form>
+    </div>    
+</div>
+</div>   
+</div>
+{% endblock %}

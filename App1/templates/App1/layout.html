@@ -1,0 +1,700 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+
+    <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
+
+    <!--block links 
+    this part should be at index.html-->
+    {% block links %}
+
+    {% endblock %}
+    <!--  endblock -->
+    <link rel="stylesheet" href="{% static 'css/test2.css' %}">
+    
+    <title>Grupo Selectos</title> 
+    
+    <script type="text/javascript">
+      var user = '{{request.user}}'
+    </script>
+  
+  </head>
+
+  <body>
+    <header>
+      <div class="top-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-lg-6 col-md-7">
+                    <div class="header__top__left">
+                      <a href="https://www.instagram.com/gruposelectos/"><i class="zmdi zmdi-instagram"></i></a>
+                      <a href="https://wa.me/+5804123595949"><i class="zmdi zmdi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-8 col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="header__top__links">
+                            <a href="#">Ayuda</a>
+                            <a href="#">Inicio De Sesion</a>
+                            <a href="#">Registro</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <nav id="menu-1" class="navbar sticky-top navbar-expand-lg navbar-light">
+        <div class="container">
+          <div class="left-nav-element">
+            <button class="navbar-toggler" type="button"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+
+          <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/icons/logo1.png' %}" alt="IMG-LOGO"></a>
+          
+          <div class="right-nav-element icons-mobile">
+            <a href="#"> <i class="zmdi zmdi-search" style="font-size: 30px;"></i></a>
+            <a href="#" ><i class="cart-icon zmdi zmdi-shopping-cart" style="font-size: 30px;"></i></i></a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto">
+              <li class="nav-item ">
+                <a class="nav-link bold" href="{% url 'index' %}">Inicio</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link bold" href="{% url 'shop' %}">Productos</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link bold" href="{% url 'categories' %}">Categorias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'stores' %}">Tiendas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contacto</a>
+              </li>
+            </ul>
+            <!-- <div class="m-auto" style="display: flex; align-items: center;">
+              
+                {% if user.is_authenticated %}
+                  <div class="nav-item dropdown" style="display: flex;">
+                    <i class="zmdi zmdi-account" style="font-size: 30px;     
+                        top: 4px;
+                        position: absolute;
+                        font-size: 30px;">
+                    </i>
+                    <a class="nav-link dropdown-toggle" style="padding-left: 30px;"
+                      href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Hola {{ request.user.first_name }}  
+                    </a>
+                    
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Mi cuenta</a>
+                    <a class="dropdown-item" href="#">Notificar Pago</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesion</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+
+                {% else %}
+                <div class="nav-item dropdown" style="display: flex;">
+                  <i class="zmdi zmdi-account" style="font-size: 30px;     
+                      top: 4px;
+                      position: absolute;
+                      font-size: 30px;">
+                  </i>
+                  <a class="nav-link dropdown-toggle" style="padding-left: 30px;"
+                    href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hola, Identificate 
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'login' %}">Iniciar Sesion</a>
+                    <a class="dropdown-item" href="{% url 'signup' %}">Registrarse</a>
+                  </div>
+                </div>
+
+                {% endif %}              
+            </div> -->
+          </div>
+
+          <div class="icons-desktop">
+              <!-- Search form -->
+              <form action="/search" method="GET">
+                <input style="height: 35px" class="form-control" type="text" name="q" placeholder="Buscar..." aria-label="Search">
+              </form>
+              <a href="#" style="position: absolute; left: 187px; top: 11px;"> <i class="zmdi zmdi-search" style="font-size: 30px;"></i></a>
+            
+            <a href="{% url 'login' %}"><i class="zmdi zmdi-account" style="font-size: 30px;"></i></a>
+            <a href="#" style="padding-right: 0;" ><i class="cart-icon zmdi zmdi-shopping-cart" style="font-size: 30px;"></i></a>
+          </div>
+        
+        </div>
+      </nav>
+
+<style>
+.menu-wrap{
+  overflow: hidden;
+}
+  .header-menu {
+    overflow: hidden auto;
+    position: fixed;
+    z-index: 1100;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: -100vw;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.4s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px 0px;
+    flex-direction: column;
+}
+
+.menu-item.emphasize___1i_QE {
+    font-weight: 700;
+}
+.menu-item.toplevel___3S_H3 {
+    font-size: 18px;
+    letter-spacing: 2px;
+    /* text-transform: uppercase; */
+}
+.root-page___OzGBu .menu-item {
+    padding-left: 30px;
+}
+.menu-item {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    height: 45px;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 100%;
+}
+
+.header-menu i{
+  font-size: 30px;
+}
+  .items{
+    height: 100%;
+    padding-top: 10px;
+    overflow-y: scroll;
+    background-color: #fff;
+    box-shadow: inset 0 1px 0 0 #ebedee;
+    }
+
+
+    .mobile-navigation___2o7K9 .close-button___2q9CF {
+    position: absolute;
+    right: 20px;
+    top: 8px;
+}
+.header-button___20wxX {
+    align-items: center;
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    width: 44px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    text-align: inherit;
+    text-transform: inherit;
+}
+button , a{
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    touch-action: manipulation;
+}
+
+
+.menu-item___1A1ni.separator___36SKK {
+    border-bottom: 1px solid #ebedee;
+    height: 0;
+    margin: 10px 0;
+    padding: 0;
+}
+.root-page___OzGBu .menu-item___1A1ni {
+    padding-left: 30px;
+}
+.menu-item___1A1ni {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    height: 45px;
+    justify-content: space-between;
+    padding-left: 56px;
+    padding-right: 30px;
+    width: 100vw;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+</style>
+
+      <div id="menu" class="container-fluid menu-wrap">
+          
+          <div class="header-menu">
+              <div class="header-menu-title flex-w flex-sb-m p-b-8"></div>
+              <div style="display: flex;">
+                <a style="margin: auto" class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/icons/logo1.png' %}" alt="IMG-LOGO"></a>
+              </div>     
+              <div class="page___A9ZrX">
+
+                <div class="items">
+                  <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 emphasize___1i_QE">Productos<i class="zmdi zmdi-chevron-right"></i></div></a>
+                  <!-- <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 emphasize___1i_QE">MUJER<i class="zmdi zmdi-chevron-right"></i></div></a>
+                  <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 emphasize___1i_QE">NIÑOS<i class="zmdi zmdi-chevron-right"></i></div></a> -->
+                  <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 ">Departamentos<i class="zmdi zmdi-chevron-right"></i></div></a>
+                  <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 ">Destacados<i class="zmdi zmdi-chevron-right"></i></div></a>
+                  <a href="{% url 'shop' %}"><div class="menu-item toplevel___3S_H3 ">Opcion 6<i class="zmdi zmdi-chevron-right"></i></div></a>
+
+                  <div class="menu-item___1A1ni separator___36SKK"></div>
+
+
+                  <a href=""><div class="menu-item___1A1ni">Mi cuenta</div></a>
+                  <a href=""><div class="menu-item___1A1ni">Tiendas</div></a>
+                  <a href=""><div class="menu-item___1A1ni">Ayuda</div></a>
+                  <a href=""><div class="menu-item___1A1ni">Ofertas</div></a>
+
+                
+                </div>
+              </div>
+              
+              <style>
+                .close-button___2q9CF {
+                      position: absolute;
+                      right: 20px;
+                      top: 8px;
+                  }
+                  .header-button___20wxX {
+                    
+                    position: absolute;
+                    right: 20px;
+                    top: 8px;
+                      align-items: center;
+                      display: flex;
+                      height: 44px;
+                      justify-content: center;
+                      width: 44px;
+                  }
+              </style>
+          
+              <button type="button" class="close-menu header-button___20wxX close-button___2q9CF" data-di-id="di-id-4df6fc63-21709a43">
+                <i class="zmdi zmdi-close"></i>
+            </button>
+        </div>
+              <!-- <div class="header-cart-content flex-w js-pscroll ps" style="position: relative; overflow: hidden;"> -->
+              </div>
+       
+      <!-- </div> -->
+
+    </header>
+  
+
+<STYLE>
+  .header-cart-title {
+    width: 260px;
+    max-width: 100%;
+    height: 16.5%;
+    min-height: 85px;
+    display: flex;
+}
+.flex-sb-m {
+    justify-content: space-between;
+    -ms-align-items: center;
+    align-items: center;
+}
+.flex-w {
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+  .s-full {
+    width: 100%;
+    height: 100%;
+}
+.show-header-cart .header-cart {
+    right: 0px;
+}
+.header-cart {
+    position: fixed;
+    z-index: 1100;
+    width: 390px;
+    max-width: calc(100% - 30px);
+    height: 100vh;
+    top: 0px;
+    right: -400px;
+    right: 0px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.4s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px 0px;
+    flex-direction: column;
+}
+.header-cart-title {
+    width: 260px;
+    max-width: 100%;
+    height: 16.5%;
+    min-height: 85px;
+}
+.flex-sb-m {
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-w {
+    flex-wrap: wrap;
+}
+.cl2 {
+    color: rgb(51, 51, 51);
+}
+.trans-04 {
+    transition: all 0.4s ease 0s;
+}
+.pointer {
+    cursor: pointer;
+}
+.lh-10 {
+    line-height: 1;
+}
+.p-r-5, .p-lr-5, .p-all-5 {
+    padding-right: 5px;
+}
+.p-l-5, .p-lr-5, .p-all-5 {
+    padding-left: 5px;
+}
+.fs-35 {
+    font-size: 35px;
+}
+.cl2 {
+    color: rgb(51, 51, 51);
+}
+.trans-04 {
+    transition: all 0.4s ease 0s;
+}
+.pointer {
+    cursor: pointer;
+}
+.lh-10 {
+    line-height: 1;
+}
+.p-r-5, .p-lr-5, .p-all-5 {
+    padding-right: 5px;
+}
+.p-l-5, .p-lr-5, .p-all-5 {
+    padding-left: 5px;
+}
+.fs-35 {
+    font-size: 35px;
+}
+*, ::before, ::after {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.header-cart-title {
+    width: 260px;
+    max-width: 100%;
+    height: 16.5%;
+    min-height: 85px;
+}
+.flex-sb-m {
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-w {
+    flex-wrap: wrap;
+}
+.header-cart-content {
+    flex-grow: 1;
+    overflow: auto;
+    align-content: space-between;
+}
+.w-full {
+    width: 100%;
+}
+
+.header-cart-item-img {
+    width: 60px;
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header-cart-item-txt {
+    width: calc(100% - 80px);
+}
+
+.header-cart-wrapitem {
+    flex-grow: 1;
+}
+
+.wrap-header-cart { position: fixed; z-index: 1100; width: 100%; height: 100vh; top: 0px; right: 0px; background-color: rgba(0, 0, 0, 0); visibility: hidden; transition: all 0.4s ease 0s; }
+.header-cart { position: fixed; z-index: 1100; width: 390px; max-width: calc(100% - 30px); height: 100vh; top: 0px; right: -400px; background-color: rgb(255, 255, 255); transition: all 0.4s ease 0s; box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px 0px; }
+.header-cart::after { content: ""; display: block; width: 100%; height: 9%; min-height: 30px; }
+.show-header-cart { visibility: visible; background-color: rgba(0, 0, 0, 0.6); }
+.show-header-cart .header-cart { right: 0px; }
+.header-cart-title { width: 260px; max-width: 100%; height: 16.5%; min-height: 85px; }
+.header-cart-content { flex-grow: 1; overflow: auto; align-content: space-between; }
+.header-cart-wrapitem { flex-grow: 1; }
+.header-cart-item-img { width: 60px; position: relative; margin-right: 20px; cursor: pointer; }
+.header-cart-item-img img { width: 100%; }
+.header-cart-item-img::after { content: ""; font-family: Linearicons-Free; font-size: 16px; display: flex; justify-content: center; align-items: center; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgba(0, 0, 0, 0.5); color: rgb(255, 255, 255); transition: all 0.3s ease 0s; opacity: 0; }
+.header-cart-item-img:hover::after { opacity: 1; }
+.header-cart-item-txt { width: calc(100% - 80px); }
+.header-cart-item-name { display: block; font-size: 14px; color: rgb(85, 85, 85); line-height: 1.3; }
+.header-cart-item-info { display: block; font-size: 14px; color: rgb(136, 136, 136); line-height: 1.5; }
+.header-cart-total { font-size: 18px; color: rgb(34, 34, 34); line-height: 1.3; }
+@media (max-width: 575px) {
+  .header-cart { padding: 30px; }
+  .header-cart-title { padding-bottom: 35px; }
+}
+
+
+.p-r-25, .p-lr-25, .p-all-25 {
+    padding-right: 25px;
+}
+
+.p-l-65{
+  padding-left: 65px;
+}
+</STYLE>
+
+<div id="shopping-cart" class="container-fluid cart-wrap">
+  <div class="close-cart s-full"></div>
+  <div class="header-cart flex-col-l p-l-65 p-r-25">
+      <div class="header-cart-title flex-w flex-sb-m p-b-8">
+          <span class="mtext-103 cl2">
+          Carrito
+          </span>
+        <div class="close-cart fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04">
+          <i class="zmdi zmdi-close"></i>
+        </div>
+      </div>
+      <div class="header-cart-content flex-w js-pscroll ps" style="position: relative; overflow: hidden;">
+          
+      </div>
+    </div>
+  </div>
+	{% block content%}
+
+	{% endblock %}
+
+<style>
+#myBtn {
+    width: 50px;
+    height: 50px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 1000;
+    outline: none;
+    background-color: rgb(255 255 255);
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;    
+    border-radius: 30px;
+    font-size: 45px;
+    justify-content: center;
+    align-items: center;
+}
+
+#myBtn:hover {
+  background-color: #c2c2c2;
+}
+</style>
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="zmdi zmdi-chevron-up"></i></button>
+
+    <footer class="footer-container bg-light">
+
+      <div class="container" >
+          <div class="row" style="justify-content: center;">
+            <div class="col-xs-12 col-sm-6 col-md-4 footer-item">
+              <div class="container-flex">
+                <a href="#"><img style="width: 200px;" src="{% static 'images/icons/logo1.png' %}" alt="IMG-LOGO"></a>
+                <br>
+                <br>
+                
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 footer-item">
+              Visitanos En Nuestras <a href="{% url 'stores' %}"><strong>Tiendas</strong></a> En la Isla de Margarita
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 footer-item">
+              <a href="{% url 'contact' %}"><h3>Contáctanos</h3></a>
+              <i class="zmdi zmdi-whatsapp"></i>
+              <a href="https://wa.me/+5804123595949">04123595949</a>
+            </div>
+          </div>
+      </div>
+
+      <div class="footer-copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+            <p>Selectos © 2020. Derechos Reservados</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+    <script src="{% static 'js/test.js' %}"></script>
+
+  </body>
+  <script>
+    // CHARGE CART ITEMS HERE
+    // btn = document.querySelector('.cart-icon');
+    // btn.addEventListener('click',function(){
+    //   console.log('Ok');
+    //   url = "http://192.168.0.103:8000/cart"
+    //   cart = document.querySelector('.header-cart-content');
+    // })
+  </script>
+  <!-- <script>
+    btn = document.querySelector('.cart-icon');
+    btn.addEventListener('click',function(){
+      console.log('Ok');
+      url = "http://192.168.0.103:8000/api/order"
+        cart = document.querySelector('.header-cart-content')
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+        cart.innerHTML = ''
+            console.log('Data:', data)
+
+            var list = data
+            for (var i in list){
+
+        var item_url = ""
+
+        //item url for the buttons 
+                var item = `          
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img style="width: 50px;" src="" alt="product">
+                    </div>
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            ${list[i].product}
+                        </a>
+                        <span class="header-cart-item-info">
+                        $
+                        </span>
+                    </div>
+                    </li>
+                `
+                wrapper.innerHTML += item
+            }
+        var res = document.getElementById('res')
+
+        res.innerHTML = `Mostrando ${data.length} resultado` + (data.length>1? "s" : "")
+            if (list_snapshot.length > list.length){
+                for (var i = list.length; i < list_snapshot.length; i++){
+                    document.getElementById(`data-row-${i}`).remove()
+                }
+            }
+
+            list_snapshot = list
+
+        })
+    })
+  </script> -->
+  
+  <script>
+
+    $('.navbar-toggler').click(function(){
+            document.querySelector('.menu-wrap').style.visibility =  'visible';
+            document.querySelector('.header-menu').style.left = '0px';  
+            document.querySelector('body').style.overflow = 'hidden';  //Prevent Scroll
+    });
+  
+    var close_cart = document.getElementsByClassName('close-menu');
+  
+    for (i=0; i<close_cart.length;i++){
+      close_cart[i].addEventListener('click', function(){
+        document.querySelector('.menu-wrap').style.visibility = 'hidden';
+        document.querySelector('.header-menu').style.left = '-100vw';
+        document.querySelector('body').style.overflow = 'auto';  
+      })
+    }
+  </script>
+
+<script>
+
+  $('.cart-icon').click(function(){
+    console.log('Ok');
+    url = '{{ link }}' +"/cart"
+    cart = document.querySelector('.header-cart-content')
+        // fetch(url)
+        // .then((resp) => resp.json())
+        // .then(function(data){
+        //     cart.innerHTML = ''
+        //     cart.innerHTML = data;
+        //     console.log('Data:', data)
+        // })
+
+    $('.header-cart-content').load(url);
+
+    document.querySelector('.cart-wrap').style.visibility =  'visible';
+    document.querySelector('.header-cart').style.right = '0px';
+  });
+
+  var close_cart = document.getElementsByClassName('close-cart');
+
+  for (i=0; i<close_cart.length;i++){
+    close_cart[i].addEventListener('click', function(){
+      document.querySelector('.cart-wrap').style.visibility = 'hidden';
+      document.querySelector('.header-cart').style.right = '-400px';
+    })
+  }
+</script>
+  <script>
+    mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "flex";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
+
+</html>

@@ -1,0 +1,727 @@
+{% extends "App1/layout.html" %}
+
+{% block content %}
+
+<style>
+
+.form-group {
+    margin-bottom: 5px
+}
+
+label {
+    padding-left: 10px
+}
+
+.form-group:last-child {
+    margin-bottom: 0
+}
+
+h6 {
+    margin-bottom: 0px
+}
+
+#sort {
+    outline: none;
+    border: none
+}
+
+.card-body {
+    padding: 8px
+}
+
+@media(min-width:1200px) {
+
+    .card {
+        /* width: 200px; */
+        /* height: 330px; */
+        border: none
+    }
+
+    .card-img-top {
+        width: 200px;
+        /* height: 200px;  */
+        border-radius: 10px
+    }
+
+}
+
+@media(min-width:992px) and (max-width:1199px) {
+
+    .card {
+        /* width: 200px; */
+        padding: 8px;
+        /* height: 330px; */
+        border: none
+    }
+
+    .card-img-top {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px
+    }
+
+}
+
+</style>
+
+<!-- products section -->
+<style>
+  .card{
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .card img{
+    transition: transform .2s; /* Animation */
+    
+  }
+  
+  .card:hover img{
+    transform: scale(1.2);
+  }
+
+</style>
+
+<style>
+  .card{
+      /* border: 1px solid #00000045; */
+      border: none;
+      border-radius: 0px;
+      /* box-shadow: 3px 4px 10px 0px #0000008a; */
+  }
+
+  .card-deck {
+      margin: 0;
+      justify-content: right;
+  }
+
+  .card-deck .card {
+      margin: 0 0 2rem 0;
+  }
+/* bootstrap .card-deck .card @media(min-width:576px) changed to 300px */
+
+
+@media (min-width: 300px) and (max-width: 767.98px) {
+  .card-deck .card {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-deck .card {
+      -ms-flex: 0 0 25%;
+      flex: 0 0 25%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-deck .card {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-deck .card {
+    -ms-flex: 0 0 16.666666666666666%;
+    flex: 0 0 16.666666666666666%;
+  }
+
+}
+
+
+</style>
+
+
+  <style>/* Style the list */
+    .breadcrumb{
+      background-color: transparent;
+    }
+    ul.breadcrumb {
+      padding: 10px 16px;
+      list-style: none;
+    }
+    
+    /* Display list items side by side */
+    ul.breadcrumb li {
+      display: inline;
+      font-size: 15px;
+    }
+    
+    /* Add a slash symbol (/) before/behind each list item */
+    ul.breadcrumb li+li:before {
+      padding: 8px;
+      color: black;
+      content: "/\00a0";
+    }
+    
+    /* Add a color to all links inside the list */
+    ul.breadcrumb li a {
+      color: rgb(51, 51, 51);
+      text-decoration: underline;
+    }
+    
+    /* Add a color on mouse-over */
+    ul.breadcrumb li a:hover {
+      color: #01447e;
+
+    }
+    </style>
+
+<style>
+.filters{
+  display: flex;
+  align-items: center;
+  border: 1px solid #000000;
+  border-radius: 0 px;
+  height: auto;
+  margin: 0 15px;
+}
+
+.filter {
+  margin: 0;
+  display:flex; 
+  flex-direction: row; 
+  list-style: none;
+  justify-content: space-evenly;
+  padding: 0 0 0 25px;            
+}
+
+.dropdown-content {
+  width: 300px;
+  overflow: auto;
+  position: absolute;
+  z-index: 90;
+  background: #fff;
+  border: 1px solid #000;
+  margin-top: -1px;
+  padding-top: 10px;
+} 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+</style>
+
+<div class="container" style="max-width: 1250px;">
+<br>
+  <ul class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Productos</li>
+  </ul>
+</div>
+
+<style>    
+.filter-title{
+  height: 50px;
+  background-color: #fff;
+  color: #000;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100%;
+  overflow: hidden;
+  text-transform: uppercase;
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 25px 0 16px;
+}
+
+
+.dropdown-menu {
+  
+  border: 1px solid #000;
+  border-radius: 0;
+}
+</style>
+
+<style>
+  .filter-container{
+    flex: 0 0 13.666667%;
+    max-width: 16.666667%;
+    padding-left: 20px;
+  }
+  .product-container{
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+
+  @media(max-width:992px){
+    .filter-container{
+        display: none;
+    }
+    .product-container{
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 0 10px 0 10px;
+    }
+    
+  }
+
+  /*MOBILE FILTERS */
+  .mobile-filter{
+    display: none
+  }
+
+  @media(max-width:992px){
+    .mobile-filter{
+      display: flex;
+    }
+  
+  }
+</style>
+
+
+<style>
+  .filter-wrap{
+  overflow: hidden;
+}
+  .header-filter {
+    padding: 40px 30px 30px 40px;
+    left: 0px;
+    overflow: hidden auto;
+    position: fixed;
+    z-index: 1100;
+    width: 100vw;
+    height: 100vh;
+    bottom: -100vh;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.4s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px 0px;
+    flex-direction: column;
+}
+
+#categories{
+  height:auto;
+  display:block;
+  overflow: hidden;
+}
+</style>
+
+<section id="prd">
+    <div class="container-fluid" style="max-width: 1800px;">
+      <div class="row">
+
+        <div class="mobile-filter" style="
+                  padding: 0px 15px 0 15px;
+                  justify-content: center;
+                  width: 100%;
+              ">
+          <button class="open-filter" style="
+              text-align: center;
+              border: 1px solid;
+              width: 100%;
+              margin: 0 10px 0 0;
+              ">Filtros</button>
+          <div class="wkgi0 _2T-mB">
+            <span class="-seIR _1Ffu1">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" class="" style="border: 1px solid;"></svg>
+            </span>
+              
+          </div>
+          
+        </div>
+        
+        <div id="filter-mobile" class="filter-container">
+          <div id="header-filter" class="">
+            <div class="form-row">
+              <div class="form-group col-10">
+                <div class="input-group">
+                  <form id="filter" action="">
+                    <span id="cat1234"><h5>Categorias </h5></span>
+                    <ul id="categories" role="radiogroup">
+                      <style>
+                        #categories input[type=radio] {
+                          display: none;
+                        }
+                        #categories input[type=radio]:checked + label {
+                          font-weight: 800;
+                        }
+                      </style>
+                      <li style="cursor: pointer;">
+                        <input id="all"style="height:0; width: 0; opacity: 0;" type="radio" class="filter-input" name="category" value="0">
+                        <label for="all">Todos</label>
+                      </li>
+                      {% for category in categories %}    
+                      <li style="cursor: pointer;">
+                        <input id="{{category}}"style="height:0;width: 0; opacity: 0;" type="radio" class="filter-input" name="category" value="{{ category.id }}">
+                        <label for="{{category}}">{{category}}  </label>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                    <script>
+                      // document.querySelector('#cat1234').addEventListener("click",function(){
+                      //   if (document.querySelector('#categories').style.height == 'auto'){
+                      //     document.querySelector('#categories').style.height = '0px'
+                      //   }else{
+                      //     document.querySelector('#categories').style.height = 'auto';
+                      // }
+                      // })
+                    </script>
+                    
+                    <h5>Marcas</h5>
+                    {% for brand in brands %}    
+                    <li style="cursor: pointer;">
+                      <input id="{{brand}}"style="height:0;width: 0; opacity: 0;" type="radio" class="filter-input" name="category" value="{{ brand.id }}">
+                      <label for="{{brand}}">{{brand}}  </label>
+                    </li>
+                    {% endfor %}
+
+
+                    <h5>Tallas</h5>
+                    <style>
+                      #sizes{
+                        display:flex;
+                      }
+                      .size_label{
+                        border: 1px solid grey;
+                        width: 30px;
+                        height: 30px;
+                        margin: 2px;
+                        align-content: center;
+                      }
+                      #sizes input[type=checkbox] {
+                        display: none;
+                      }
+                      #sizes input[type=checkbox]:checked + label {
+                        border: 1px solid black;
+                      }
+                    </style>
+                    <ul id="sizes">
+                    {% for size in sizes %}    
+                        <input id="{{size.size}}" type="checkbox" class="filter-input" name="sizes" value="{{ size.size }}" style="height:0; width: 0; opacity: 0;">
+
+                        <label class="size_label" for="{{size.size}}">{{ size.size }}</label><br>                      
+                    {% endfor %}
+                  </ul>
+                </form>
+              </div>
+            </div>
+            </div>
+          </div>
+
+        </div>
+
+        <style>
+          .desktop-element{
+            display: none !important;
+          }
+          @media(min-width: 992px){
+            .desktop-element{
+              display: flex !important;
+            }
+          }
+        </style>
+        <div class="product-container">
+            <div class="desktop-element d-flex flex-row">
+              <div class="text-muted m-2" id="res"></div>
+              <div class="ml-auto mr-lg-4">
+                  <div id="sorting" class="border rounded p-1 m-1"> 
+                    <span class="text-muted">Ordenar Por</span> 
+                      <select name="sort" id="sort">
+                          <option value="popularity"><b>Popularidad</b></option>
+                          <option value="price"><b>Precio</b></option>
+                      </select> 
+                  </div>
+              </div>
+            </div>
+        <div id="products" class="card-deck">
+
+        </div>
+        <div>
+          <style>
+            .center {
+              text-align: center;
+            }
+
+            .pagination {
+              display: inline-block;
+            }
+
+            .page{
+              cursor: pointer;
+            }
+            .pagination input {
+              cursor: pointer;
+              color: black;
+              float: left;
+              padding: 8px 16px;
+              text-decoration: none;
+              transition: background-color .3s;
+              border: 1px solid #ddd;
+              margin: 0 4px;
+            }
+
+            .pagination input.active {
+              background-color: #4CAF50;
+              color: white;
+              border: 1px solid #4CAF50;
+            }
+
+            .pagination input:hover:not(.active) {background-color: #ddd;}
+            </style>
+
+            <div class="center">
+              <div class="pagination">
+                <form id="pag" action="">
+                </form>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+  <!-- $("#products").load(window.location.href +" #products > *"); -->
+
+<style>
+
+
+/* FULL PAGE LOADER
+.loader-container {
+  overflow: hidden;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #76767691;
+}
+*/
+.loader-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+}
+.loader {
+
+border: 7px solid #f3f3f3; /* Light grey */
+border-top: 7px solid #000000; 
+border-radius: 50%;
+width: 120px;
+height: 120px;
+animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+</style>
+
+<script type="text/javascript">
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    var activeItem = null
+    var list_snapshot = []
+
+var url = "{{host}}" +'/api/products'
+
+buildList(url)
+
+var inp = document.getElementsByClassName('filter-input');
+
+for (i=0;i<inp.length;i++){
+  inp[i].addEventListener('click',function(){
+    data = $('#filter').serializeArray();
+    console.log("CLICK")
+    var url_data = '?'
+
+    var previous = ""
+    $(data).each(function(i, field){
+      
+      if (field.name == previous){
+        url_data += ","+field.value
+      }else{
+        if (i != 0){
+          url_data += "&"
+        }
+        url_data += field.name +"="+field.value;
+      }
+      previous = field.name;
+      
+    });    
+    
+    data = $('#pag').serializeArray();
+    
+    $(data).each(function(i, field){
+      
+      if (field.name == previous){
+        url_data += ","+field.value
+      }else{
+        url_data += "&"
+        url_data += field.name +"="+field.value;
+      }
+      previous = field.name;
+      
+    });
+
+    console.log(url_data)
+    
+    var url = "{{host}}" +'/api/products' + url_data
+
+    buildList(url)
+  })
+
+
+  
+}
+
+    function buildList(url){
+        var wrapper = document.getElementById('products')
+        wrapper.innerHTML = ''
+  
+        let loader = `<div class="loader-container"><div class="loader"></div></div>`;
+        
+        document.getElementById('products').innerHTML = loader;
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            wrapper.innerHTML = ''
+            console.log('Data:', data)
+
+            var list = data.results
+            for (var i in list){
+
+            var item_url = "{% url 'product' ref=12345 %}".replace(/12345/, list[i].ref.toString());
+            //item url for the buttons 
+                  var item = `
+                      <div class="card">
+                        <div style="overflow: hidden; border-radius:10px;">
+                          <img class="img-fluid img-responsive" src="${list[i].img}">
+                          </div>
+                        <div class="card-body">
+                          <a href="${item_url}"><h6><b>${list[i].description}</b> </h6></a>
+                          <div class="d-flex flex-row my-2">$<div class="price text-muted">${list[i].price}</div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                      `
+                      //<p class="card-text"><a class="btn w-100 rounded my-2" href="${item_url}">Ver Detalles</a>  
+                      //<a class="btn w-100 rounded my-2" href="${item_url}">Comprar Ahora</a></p>
+                wrapper.innerHTML += item
+            }
+    var res = document.getElementById('res')
+    
+    res.innerHTML = `Mostrando ${data.results.length} resultado` + (data.results.length>1? "s" : "")
+    
+    pag.innerHTML = ""
+    for (i=1;i<=data.count;i++){
+        pag.innerHTML += ` <input id="p${i}" type="radio" class="page" name="page" value="${i}" style="height:0; width: 0; opacity: 0;">
+                           <label class="page" for="p${i}">${i}</label>`
+    }
+      })
+    }
+
+var form = document.getElementById('filter')
+    
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+
+        console.log('Form submitted')
+        data = $('#filter').serializeArray();
+
+        var url_data = '?'
+
+        $(data).each(function(i, field){
+          url_data += field.name +"="+field.value+"&";
+        });      
+
+        var url = "{{host}}" +'/api/products' + url_data
+
+        buildList(url)
+    })
+
+</script>
+
+<script>
+
+  $('.open-filter').click(function(){
+    
+          document.querySelector('.filter-wrap').style.visibility =  'visible';
+          document.querySelector('.header-filter').style.bottom = '0px';  
+          document.querySelector('body').style.overflow = 'hidden';  //Prevent Scroll
+  });
+
+  // var close_cart = document.getElementsByClassName('close-menu');
+
+  // for (i=0; i<close_cart.length;i++){
+  //   close_cart[i].addEventListener('click', function(){
+  //     document.querySelector('.menu-wrap').style.visibility = 'hidden';
+  //     document.querySelector('.header-menu').style.left = '-100vw';
+  //     document.querySelector('body').style.overflow = 'auto';  
+  //   })
+  // }
+</script>
+
+<script>
+
+  //FILTER CHANGES DESKTOP/MOBILE
+  window.addEventListener("resize", function(){
+  if ($(window).width() < 992) {
+      $('#filter-mobile').addClass('container-fluid filter-wrap');
+      $('#filter-mobile').removeClass('filter-container');
+
+      $('#header-filter').addClass('header-filter');
+  } else {
+      $('#filter-mobile').removeClass('container-fluid filter-wrap');
+      $('#filter-mobile').addClass('filter-container');
+
+      $('#header-filter').removeClass('header-filter');
+
+  }
+  });
+  if ($(window).width() < 992) {
+      $('#filter-mobile').addClass('container-fluid filter-wrap');
+      $('#filter-mobile').removeClass('filter-container');
+
+      $('#header-filter').addClass('header-filter');
+  } else {
+      $('#filter-mobile').removeClass('container-fluid filter-wrap');
+      $('#filter-mobile').addClass('filter-container');
+
+      $('#header-filter').removeClass('header-filter');
+
+  }
+</script>
+
+{% endblock %}

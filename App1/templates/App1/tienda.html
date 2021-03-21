@@ -1,0 +1,455 @@
+{% extends "App1/layout.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+
+.form-group {
+    margin-bottom: 5px
+}
+
+label {
+    padding-left: 10px
+}
+
+.form-group:last-child {
+    margin-bottom: 0
+}
+
+h6 {
+    margin-bottom: 0px
+}
+
+#sort {
+    outline: none;
+    border: none
+}
+
+
+.card-body {
+    padding: 8px
+}
+
+@media(min-width:1200px) {
+
+    .card {
+        /* width: 200px; */
+        /* height: 330px; */
+        border: none
+    }
+
+    .card-img-top {
+        width: 200px;
+        /* height: 200px;  */
+        border-radius: 10px
+    }
+
+}
+
+@media(min-width:992px) and (max-width:1199px) {
+
+    .card {
+        /* width: 200px; */
+        padding: 8px;
+        /* height: 330px; */
+        border: none
+    }
+
+    .card-img-top {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px
+    }
+
+}
+
+</style>
+
+<!-- products section -->
+<style>
+  .card{
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+  .card img{
+    transition: transform .2s; /* Animation */
+    
+  }
+  
+  .card:hover img{
+    transform: scale(1.2);
+  }
+
+</style>
+
+<style>
+  .card{
+      /* border: 1px solid #00000045; */
+      border: none;
+      border-radius: 0px;
+      /* box-shadow: 3px 4px 10px 0px #0000008a; */
+  }
+
+  .card-deck {
+      margin: 0;
+      justify-content: right;
+  }
+
+  .card-deck .card {
+      margin: 0 0 2rem 0;
+  }
+/* bootstrap .card-deck .card @media(min-width:576px) changed to 300px */
+
+
+@media (min-width: 300px) and (max-width: 767.98px) {
+  .card-deck .card {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card-deck .card {
+      -ms-flex: 0 0 25%;
+      flex: 0 0 25%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-deck .card {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-deck .card {
+    -ms-flex: 0 0 16.666666666666666%;
+    flex: 0 0 16.666666666666666%;
+  }
+
+}
+
+
+</style>
+
+<style>
+.filters{
+  display: flex;
+  align-items: center;
+  border: 1px solid #000000;
+  border-radius: 0 px;
+  height: auto;
+  margin: 0 15px;
+}
+
+.filter {
+  margin: 0;
+  display:flex; 
+  flex-direction: row; 
+  list-style: none;
+  justify-content: space-evenly;
+  padding: 0 0 0 25px;            
+}
+
+.dropdown-content {
+  width: 300px;
+  overflow: auto;
+  position: absolute;
+  z-index: 90;
+  background: #fff;
+  border: 1px solid #000;
+  margin-top: -1px;
+  padding-top: 10px;
+} 
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+</style>
+
+<div class="container" style="justify-content: center; display: flex;">
+  <img src="{% static 'img/7a81a102aa688377925369a08d99df2a.jpg' %}" alt="">
+</div>
+<div class="container" style="max-width: 1250px;">
+	<br>
+	  <ul class="breadcrumb">
+		
+		<li><a href="{% url 'index' %}">Inicio ></a></li>
+		<li><a href="{% url 'shop' %}"></a>&nbsp; Productos </a></li>
+		
+	  </ul>
+</div>
+
+<style>    
+.filter-title{
+  height: 50px;
+  background-color: #fff;
+  color: #000;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100%;
+  overflow: hidden;
+  text-transform: uppercase;
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 25px 0 16px;
+}
+
+
+.dropdown-menu {
+  
+  border: 1px solid #000;
+  border-radius: 0;
+}
+</style>
+
+<style>
+  .filter-container{
+    flex: 0 0 13.666667%;
+    max-width: 16.666667%;
+    padding-left: 20px;
+  }
+  .product-container{
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+
+  @media(max-width:992px){
+    .filter-container{
+        display: none;
+    }
+    .product-container{
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 0 10px 0 10px;
+    }
+    
+  }
+
+  /*MOBILE FILTERS */
+  .mobile-filter{
+    display: none
+  }
+
+  @media(max-width:992px){
+    .mobile-filter{
+      display: flex;
+    }
+  
+  }
+</style>
+
+
+<style>
+  .filter-wrap{
+  overflow: hidden;
+}
+  .header-filter {
+    padding: 40px 30px 30px 40px;
+    left: 0px;
+    overflow: hidden auto;
+    position: fixed;
+    z-index: 1100;
+    width: 100vw;
+    height: 100vh;
+    bottom: -100vh;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.4s ease 0s;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 3px 6px 0px;
+    flex-direction: column;
+}
+
+#categories{
+  height:auto;
+  display:block;
+  overflow: hidden;
+}
+</style>
+
+<section id="prd">
+  <div class="container-fluid" style="max-width: 1800px;">
+
+    <div class="row">
+
+      <div class="mobile-filter" style="
+                padding: 0px 15px 0 15px;
+                justify-content: center;
+                width: 100%;
+            ">
+        <button class="open-filter" style="
+            text-align: center;
+            border: 1px solid;
+            width: 100%;
+            margin: 0 10px 0 0;
+            ">Filtros</button>
+        <div class="wkgi0 _2T-mB">
+          <span class="-seIR _1Ffu1">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" class="" style="border: 1px solid;"></svg>
+          </span>
+            
+        </div>
+        
+      </div>
+      
+      <div id="filter-mobile" class="filter-container">
+        <div id="header-filter" class="">
+          {% include 'App1/filters.html' %}
+        </div>
+
+      </div>
+
+      <style>
+        .desktop-element{
+          display: none !important;
+        }
+        @media(min-width: 992px){
+          .desktop-element{
+            display: flex !important;
+          }
+        }
+      </style>
+      <div class="product-container">
+          <div class="desktop-element d-flex flex-row">
+            <div class="text-muted m-2" id="res"></div>
+            <div class="ml-auto mr-lg-4">
+                <div id="sorting" class="border rounded p-1 m-1"> 
+                  <span class="text-muted">Ordenar Por</span> 
+                    <select name="sort" id="sort">
+                        <option value="id"><b>-------</b></option>
+                        <!-- <option value="popularity"><b>Popularidad</b></option> -->
+                        <option value="-price"><b>Precio: Mayor a Menor</b></option>
+                        <option value="price"><b>Precio: Menor a Mayor</b></option>
+                    </select> 
+                </div>
+            </div>
+          </div>
+          <div id="filteredProducts" class="card-deck">
+              {% include 'App1/product-list.html' %}
+          </div>
+      
+        <!-- <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+      
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+      
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div> -->
+
+      
+    </div>
+  </div>
+</div>
+</section>
+
+
+<br>
+
+<style>
+/* FULL PAGE LOADER
+.loader-container {
+  overflow: hidden;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #76767691;
+}
+*/
+.loader-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100%;
+}
+.loader {
+
+border: 7px solid #f3f3f3; /* Light grey */
+border-top: 7px solid #000000; 
+border-radius: 50%;
+width: 120px;
+height: 120px;
+animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+
+  $('.open-filter').click(function(){
+    
+          document.querySelector('.filter-wrap').style.visibility =  'visible';
+          document.querySelector('.header-filter').style.bottom = '0px';  
+          document.querySelector('body').style.overflow = 'hidden';  //Prevent Scroll
+  });
+
+  // var close_cart = document.getElementsByClassName('close-menu');
+
+  // for (i=0; i<close_cart.length;i++){
+  //   close_cart[i].addEventListener('click', function(){
+  //     document.querySelector('.menu-wrap').style.visibility = 'hidden';
+  //     document.querySelector('.header-menu').style.left = '-100vw';
+  //     document.querySelector('body').style.overflow = 'auto';  
+  //   })
+  // }
+</script>
+
+<script>
+
+  //FILTER CHANGES DESKTOP/MOBILE
+  window.addEventListener("resize", function(){
+  if ($(window).width() < 992) {
+      $('#filter-mobile').addClass('container-fluid filter-wrap');
+      $('#filter-mobile').removeClass('filter-container');
+
+      $('#header-filter').addClass('header-filter');
+  } else {
+      $('#filter-mobile').removeClass('container-fluid filter-wrap');
+      $('#filter-mobile').addClass('filter-container');
+
+      $('#header-filter').removeClass('header-filter');
+
+  }
+  });
+  if ($(window).width() < 992) {
+      $('#filter-mobile').addClass('container-fluid filter-wrap');
+      $('#filter-mobile').removeClass('filter-container');
+
+      $('#header-filter').addClass('header-filter');
+  } else {
+      $('#filter-mobile').removeClass('container-fluid filter-wrap');
+      $('#filter-mobile').addClass('filter-container');
+
+      $('#header-filter').removeClass('header-filter');
+
+  }
+</script>
+
+{% endblock %}

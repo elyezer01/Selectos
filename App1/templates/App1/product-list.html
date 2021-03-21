@@ -1,0 +1,16 @@
+{% for product in data %}
+<div class="card">
+    <div style="overflow: hidden; border-radius:10px;">
+      <img class="img-fluid img-responsive" src="{{ product.variants.first.imageURL }}">
+      </div>
+    <div class="card-body">
+      <a href="{% url 'product' product.category product.url %}"><h6><b>{{ product.description }}</b> </h6></a>
+      <div class="d-flex flex-row my-2">$<div class="price text-muted">{{ product.price }}</div>
+    </div>  
+  </div>
+</div>
+{% endfor %}
+
+
+
+

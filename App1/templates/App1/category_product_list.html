@@ -1,0 +1,117 @@
+{% extends 'App1/layout.html' %}
+{% load static %}
+{% block content %}
+<style>
+	.card{
+		/* border: 1px solid #00000045; */
+		border: none;
+		border-radius: 0px;
+		/* box-shadow: 3px 4px 10px 0px #0000008a; */
+	}
+  
+	.card-deck {
+		margin: 0;
+		justify-content: right;
+	}
+  
+	.card-deck .card {
+		margin: 0 0 2rem 0;
+	}
+  /* bootstrap .card-deck .card @media(min-width:576px) changed to 300px */
+  
+  
+  @media (min-width: 300px) and (max-width: 767.98px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 50%;
+	  flex: 0 0 50%;
+	}
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+	.card-deck .card {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+	}
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 20%;
+	  flex: 0 0 20%;
+	}
+  }
+  
+  @media (min-width: 1200px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 16.666666666666666%;
+	  flex: 0 0 16.666666666666666%;
+	}
+  
+  }
+  
+  
+  </style>
+<div class="container" style="max-width: 1250px;">
+<br>
+	<ul class="breadcrumb">
+		<li><a href="{% url 'index' %}">Inicio ></a></li>
+		<li><a href="{% url 'categories' %}"></a>&nbsp; Categorías ></a></li>
+		<li>&nbsp;{{ cat.description }}</li>
+	</ul>
+</div>
+<main class="container my-4">
+		<!-- Filters -->
+		<!-- <div class="col-md-3">
+			filters
+		</div> -->
+		<style>
+			.desktop-element{
+			  display: none !important;
+			}
+			@media(min-width: 992px){
+			  .desktop-element{
+				display: flex !important;
+			  }
+			}
+		  </style>
+		  <div class="product-container">
+			  <div class="desktop-element d-flex flex-row">
+				<div class="text-muted m-2" id="res"></div>
+				<div class="ml-auto mr-lg-4">
+					<div id="sorting" class="border rounded p-1 m-1"> 
+					  <span class="text-muted">Ordenar Por</span> 
+						<select name="sort" id="sort">
+							<option value="popularity"><b>Popularidad</b></option>
+							<option value="price"><b>Precio</b></option>
+						</select> 
+					</div>
+				</div>
+			  </div>
+			  	<!-- OTHER FILTERS-->
+			  <div id="filteredProducts" class="card-deck">
+				{% include 'App1/product-list.html' %}
+			  </div>
+		  
+			<!-- <div class="pagination">
+			  <span class="step-links">
+				  {% if page_obj.has_previous %}
+					  <a href="?page=1">&laquo; first</a>
+					  <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+				  {% endif %}
+		  
+				  <span class="current">
+					  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+				  </span>
+		  
+				  {% if page_obj.has_next %}
+					  <a href="?page={{ page_obj.next_page_number }}">next</a>
+					  <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+				  {% endif %}
+			  </span>
+		  </div> -->
+	
+		  
+		</div>
+	
+</main>
+{% endblock %}

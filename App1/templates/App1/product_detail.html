@@ -1,0 +1,290 @@
+{% extends 'App1/layout.html' %}
+{% load static %}
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'css/product-slider.css' %}">
+{% endblock%}
+
+{% block content %}
+
+
+
+
+<!--
+-->
+<main class="container my-4" style="max-width: 1250px;">
+	<ul class="breadcrumb"> 
+		<li><a href="{% url 'index' %}">Inicio ></a></li>
+		<li>Productos ></li>
+		<li>{{ prd.description }}</li>
+	  </ul>
+	<!-- Featured Products -->
+	<!-- <h3 class="my-4 border-bottom pb-1">{{prd.description}}</h3> -->
+	<div class="row" style="justify-content: center;">
+		<!-- Images -->
+		<!-- <div class="col-md-4">
+			{% for p in prd.variants.all %}
+				<img src="{{p.imageURL}}" class="card-img-top" alt="Producto">
+			{% endfor %}
+
+		</div> -->
+		<div class="col-md-4">
+			<img id=featured class="card-img-top" src="{{ prd.variants.first.imageURL }}">
+	
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="images/arrow-left.png">
+	
+				<div id="slider">
+				{% for p in prd.variants.all %}
+					{% if forloop.counter <= 1 %}
+						<img class="thumbnail active" src="{{p.imageURL}}">
+					{% else %}
+						<img class="thumbnail" src="{{p.imageURL}}">
+					{% endif %}
+				{% endfor %}
+	
+				</div>
+	
+				<img id="slideRight" class="arrow" src="images/arrow-right.png">
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="details">
+				<h1 class="product-title">{{ prd.description }}</h1>
+				<h4 class="price">Precio: <span>${{ prd.price }}</span></h4>
+	
+				<label for="colors">Colores Disponibles:</label>
+				<style>
+					.colors {
+						display: flex;
+						}	
+				</style>
+				<ul class="colors">
+					{% for b in colors %}
+						<li class="color" data-color="{{b}}" data-product="{{ prd.ref }}">
+							{{b}} 
+						</li>
+					{% endfor %}
+				</ul>
+	
+				<label for="sizes">Tallas</label>
+				<ul class="sizes" style="display: flex;">
+					Selecciona Un Color
+				</ul>
+
+				<div class="action blkbtn">                      
+					<button id="atc" class="update-cart add-to-cart btn btn-dark btn-mid" type="button" data-product="{{ prd.ref }}" data-action="add" 
+					data-color="" data-size="" class="update-cart">Añadir Al Carrito</button>
+				</div>
+			</div>
+
+		</div> 
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-md-6">
+			<h3 class="my-3">Detalles</h3>
+			
+			<table class="table table-bordered">
+				<tr>
+					<th>Marca</th>
+					<td><a href="">{{ prd.brand.description }}</a></td>
+				</tr>
+				<tr>
+					<th>Category</th>
+					<td><a href="{% url 'categories' prd.category. %}">{{ prd.category.description }}</a></td>
+				</tr>
+
+			</table>
+
+		</div>
+
+		<!-- Reviews -->
+		<div class="col-md-6">
+			<h3 class="my-3">Reviews - 4.5/5 <i class="fa fa-star text-warning"></i></h3>
+			<div class="card">
+				<div class="card-body" style="max-height: 400px; overflow: auto;">
+					<!-- Detail -->
+					<blockquote class="blockquote text-right">
+					  <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</small>
+					  <footer class="blockquote-footer">User 
+					  	<cite title="Source Title">
+					  		<i class="fa fa-star text-warning"></i>
+					  		<i class="fa fa-star text-warning"></i>
+					  		<i class="fa fa-star text-warning"></i>
+					  		<i class="fa fa-star text-warning"></i>
+					  	</cite>
+					  </footer>
+					</blockquote>
+					<hr />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Related Products -->
+	<style>
+		.card{
+			/* border: 1px solid #00000045; */
+			border: none;
+			border-radius: 0px;
+			/* box-shadow: 3px 4px 10px 0px #0000008a; */
+		}
+	  
+		.card-deck {
+			margin: 0;
+			justify-content: right;
+		}
+	  
+		.card-deck .card {
+			margin: 0 0 2rem 0;
+		}
+	  /* bootstrap .card-deck .card @media(min-width:576px) changed to 300px */
+	  
+	  
+	  @media (min-width: 300px) and (max-width: 767.98px) {
+		.card-deck .card {
+		  -ms-flex: 0 0 50%;
+		  flex: 0 0 50%;
+		}
+	  }
+	  
+	  @media (min-width: 768px) and (max-width: 991.98px) {
+		.card-deck .card {
+			-ms-flex: 0 0 25%;
+			flex: 0 0 25%;
+		}
+	  }
+	  
+	  @media (min-width: 992px) and (max-width: 1199.98px) {
+		.card-deck .card {
+		  -ms-flex: 0 0 20%;
+		  flex: 0 0 20%;
+		}
+	  }
+	  
+	  @media (min-width: 1200px) {
+		.card-deck .card {
+		  -ms-flex: 0 0 16.666666666666666%;
+		  flex: 0 0 16.666666666666666%;
+		}
+	  
+	  }
+	  
+	  </style>
+	<h3 class="mt-4 mb-3 border-bottom pb-1">Productos Relacionados</h3>
+	<div class="card-deck">
+		{% include 'App1/product-list.html' %}
+	</div>
+</main>
+
+
+
+
+<script>
+
+    var s = document.getElementsByClassName('color')
+
+    for (var i = 0; i < s.length; i++){
+
+        s[i].addEventListener('click', function(){ 
+            $.ajax({
+                type: "GET",
+                url: "{% url 'charge_sizes' %}",  // URL to your view that serves new info
+                data: {'color': this.dataset.color, 'id': this.dataset.product}
+            })
+
+            .done(function(response) {
+                $('.sizes').html(response);
+            });
+        })
+    }
+
+</script>
+
+<script>
+    var color_select = document.getElementsByClassName('color');
+    var but = document.querySelector(".update-cart");
+
+    for (var i=0; i<color_select.length;i++){
+        
+        color_select[i].addEventListener('click', function(){
+            but.dataset.color = this.dataset.color;     
+        })
+    }
+    
+    // but.addEventListener('click',function(){
+    //     $("#cart-content").load(" #cart-content");
+    // })
+
+</script>
+
+<style>
+    ul > li{
+        margin-right:10px;
+        font-weight:lighter;
+        cursor:pointer
+    }
+    .color-active,.size-active,ul.colors > li.active, ul.sizes >li.active {
+        border-bottom:3px solid silver;
+        color : #1e2ba3;
+        border: 1px solid #1e2ba3 !important;
+    }
+
+    .size,.color{
+        cursor:pointer;
+        margin-right:5px;
+        /* height:20px; */
+        /* font-size:10px; */
+        padding:2px;
+        border:1px solid gray;
+        border-radius:2px;
+        }
+        
+
+</style>
+<script>
+    $("ul.colors > li").on("click",function(){
+    $("ul.colors > li").removeClass("color-active");
+        $(this).addClass("color-active");
+    })
+
+</script>
+
+
+
+
+<script type="text/javascript">
+	let thumbnails = document.getElementsByClassName('thumbnail')
+
+	let activeImages = document.getElementsByClassName('active')
+
+	for (var i=0; i < thumbnails.length; i++){
+
+		thumbnails[i].addEventListener('click', function(){
+			console.log(activeImages)
+			
+			if (activeImages.length > 0){
+				activeImages[0].classList.remove('active')
+			}
+			
+
+			this.classList.add('active')
+			document.getElementById('featured').src = this.src
+		})
+	}
+
+
+	let buttonRight = document.getElementById('slideRight');
+	let buttonLeft = document.getElementById('slideLeft');
+
+	buttonLeft.addEventListener('click', function(){
+		document.getElementById('slider').scrollLeft -= 180
+	})
+
+	buttonRight.addEventListener('click', function(){
+		document.getElementById('slider').scrollLeft += 180
+	})
+
+
+</script>
+{% endblock %}

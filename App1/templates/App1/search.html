@@ -1,0 +1,57 @@
+{% extends 'App1/layout.html' %}
+{% load static %}
+{% block content %}
+<style>
+	.card{
+		/* border: 1px solid #00000045; */
+		border: none;
+		border-radius: 0px;
+		/* box-shadow: 3px 4px 10px 0px #0000008a; */
+	}
+  
+	.card-deck {
+		margin: 0;
+		justify-content: right;
+	}
+  
+	.card-deck .card {
+		margin: 0 0 2rem 0;
+	}
+  /* bootstrap .card-deck .card @media(min-width:576px) changed to 300px */
+  
+  
+  @media (min-width: 300px) and (max-width: 767.98px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 50%;
+	  flex: 0 0 50%;
+	}
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+	.card-deck .card {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+	}
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 20%;
+	  flex: 0 0 20%;
+	}
+  }
+  
+  @media (min-width: 1200px) {
+	.card-deck .card {
+	  -ms-flex: 0 0 16.666666666666666%;
+	  flex: 0 0 16.666666666666666%;
+	}
+  }
+  </style>
+<main class="container my-4">
+	<h3 class="my-4 border-bottom pb-1"><span class="text-muted">Resultados Para:</span> {{request.GET.q}}</h3>
+	<div class="card-deck">
+		{% include 'App1/product-list.html' %}
+	</div>
+</main>
+{% endblock %}

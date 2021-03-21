@@ -1,0 +1,214 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" ></script>
+
+    <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/test2.css' %}">
+
+    <title>Grupo Selectos</title> 
+  </head>
+
+
+  <!-- <div class="loader-container">
+      <div class="loader"></div>
+  </div> -->
+<style>
+
+    .login-wrap {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .login-content{
+        margin-bottom: 10px;
+        color: #fff;
+    }
+    .login-container {
+        position: relative;
+        height: 100%;
+        text-align: center;
+        padding-top: 20px;
+    }
+    .login-container .login-panel {
+        color: #2d3748;
+    }
+    .login-panel {
+        max-width: 400px;
+        margin: 0 auto 20px;
+        padding-top: 25px;
+        padding-bottom: 20px;
+        background-color: #fff;
+        border: 2px solid #141414;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    }   
+    
+    .login-panel form {
+        padding: 15px 25px 15px 25px;
+    }
+    
+    
+    form button{
+        background-color: black;
+    }
+    
+    form .input-icon .icon-username {
+        background: url(../static/img/icon.png);
+        background-size: 18px auto;
+        background-repeat: repeat;
+    }
+    form .input-icon::after {
+        content: '';
+        position: absolute;
+        right: -11px;
+        top: -10px;
+        bottom: -10px;
+        width: 1px;
+        opacity: .5;
+        background-color: rgba(212,212,212,0);
+        background-image: -webkit-linear-gradient(bottom,rgba(212,212,212,0) 0,#d4d4d4 30%,#d4d4d4 70%,rgba(212,212,212,0) 100%);
+        background-image: linear-gradient(to top,rgba(212,212,212,0) 0,#d4d4d4 30%,#d4d4d4 70%,rgba(212,212,212,0) 100%);
+    }
+    
+    form label {
+        text-align: left;
+        width: 100%;
+    }
+    form label {
+        color: #62748e;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    label {
+        font-weight: normal;
+    }
+    label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .input-group-text{
+        background-color: white;
+        border: 1px solid black;
+    }
+    
+    .form-control{
+        border: 1px solid black;
+    }
+    
+    form .zmdi{
+        font-size: 19px !important;
+    }
+    .logo img{
+        width: 280px;
+    }
+    button{
+        background-color: #141414 !important;
+        border: none !important;
+    }
+    a{
+        color: black;
+    }
+    body{
+        background-image: linear-gradient(180deg, #fdfbfb 0%, #cdcdcd 100%);        
+    }
+    
+    form .input-icon {
+        position: absolute;
+        bottom: 14px;
+        margin-top: -9px;
+        left: 12px;
+        width: 18px;
+        height: 18px;
+    }
+    form .form-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    
+    .form-control {
+        height: 44px;
+        padding: 0 0 0 50px;
+        box-shadow: inset 0 1px 2px rgba(203,203,210,0.4);
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #383838;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #000000;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        border-radius: 4px !important;
+    }
+    
+    button{
+        border-radius: 0px !important;
+    }
+    
+    </style>
+<body>
+<div class="login-wrap">
+    <div class="container login-container">
+        <div class="logo" style="padding-bottom: 20px;">
+            <img src="{% static 'images/icons/logo1.png' %}" alt="IMG-LOGO">
+        </div>
+            <div class="login-content">
+                <div class="login-panel" id="login">
+                <h2>Inicio De Sesion</h2>
+                <form action="/login" method="POST" role="form" id="login">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Usuario</label>
+                        <!-- <div class="input-icon icon-username"></div> -->
+                        <span class="input-icon"><i class="zmdi zmdi-account"></i></span>
+                        
+                        <!-- <input autofocus="true" class="form-control" id="email" name="email" placeholder="Email address" type="email"> -->
+                        <input autofocus="true" class="form-control" type="text" name="username" placeholder="Usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <div class="input-group-prepend">
+                            <span class="input-icon"><i class="zmdi zmdi-lock"></i></span>
+
+                          </div>
+                          <input autocomplete="off" class="form-control password" id="password" name="password" placeholder="Contraseña" type="password">
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg btn-block" name="commit" type="submit" value="Log In">Iniciar Sesion</button>
+                </form>
+                
+                <a class="panel-footer" href="{% url 'signup' %}">No tienes cuenta? &nbsp;<span>Registrate</span></a>
+            </div>
+            <a href="{% url 'index' %}">Volver al Inicio</a>
+            <a href="" style="margin-left: 25px">Olviste tu contraseña?</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    var form = document.getElementById('login')
+    var loader = document.querySelector('.loader-container')
+    form.addEventListener('submit', function(){
+        loader.style.display = 'flex'
+    })
+</script>
+</body>
+
+</html>

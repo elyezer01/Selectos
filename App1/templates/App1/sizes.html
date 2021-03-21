@@ -1,0 +1,22 @@
+
+{% for a in sizes %}
+    <li class="size" data-size="{{a}}" data-product="{{products.ref}}">
+    <a>{{a}}</a>
+    </li>
+{% endfor %}
+
+<script>
+$("ul.sizes > li").on("click",function(){
+    $("ul.size > li").removeClass("active");
+        $(this).addClass("active");
+    })
+
+
+var size_select = document.getElementsByClassName('size');
+for (var i=0; i<size_select.length;i++){
+    
+    size_select[i].addEventListener('click', function(){
+        but.dataset.size = this.dataset.size;
+    })
+}
+</script>

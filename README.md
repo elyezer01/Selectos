@@ -1,1 +1,1 @@
-# Selectos
+Django Ecommerce
